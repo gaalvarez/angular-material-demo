@@ -1,0 +1,52 @@
+<md-sidenav-container [class.m2app-dark]="isDarkTheme" fullscreen>
+
+    <!-- md-sidenav must be inside same template of md-sidenav-container -->
+    <!--http://stackoverflow.com/questions/41396918/<angular-material-2-sidenav-has-no-backdrop>                                            																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							</angular-material-2-sidenav-has-no-backdrop>-->
+    <md-sidenav layout="column" #sidenav mode="over" class="app-sidenav" color="primary"  >
+        <md-toolbar>
+            <span>Settings</span>
+            <span class="app-toolbar-filler"></span>
+            <md-icon class="example-icon">build</md-icon>
+            <md-toolbar-row>
+                <button md-button (click)="isDarkTheme = !isDarkTheme" class="app-sidebar-button">TOGGLE THEME</button>
+            </md-toolbar-row>
+
+            <md-toolbar-row>
+                <span>Account</span>
+                <span class="app-toolbar-filler"></span>
+                <md-icon class="example-icon">account_circle</md-icon>
+            </md-toolbar-row>
+
+            <md-toolbar-row>
+                <button md-raised-button color="accent" class="app-sidebar-button">
+            <md-icon class="example-icon">verified_user</md-icon>
+            Login            
+           </button>
+            </md-toolbar-row>
+
+            <md-toolbar-row>
+                <span>Favorites</span>
+                <span class="app-toolbar-filler"></span>
+                <md-icon class="example-icon">favorite</md-icon>
+            </md-toolbar-row>
+
+            <md-toolbar-row>
+                <button md-raised-button color="warn" class="app-sidebar-button">
+             <md-icon class="example-icon">delete</md-icon>
+             Delete
+           </button>
+            </md-toolbar-row>
+
+        </md-toolbar>
+    </md-sidenav>
+
+    <app-header (tsEvent)="sidenav.toggle()"></app-header>
+    
+    <div class="app-content">
+        <router-outlet></router-outlet>
+    </div>
+</md-sidenav-container>
+<span class="app-action" [class.m2app-dark]="isDarkTheme">
+  <button md-fab><md-icon>check circle</md-icon></button>
+</span>
+<!-- /Material Fab-->

@@ -1,0 +1,37 @@
+<md-sidenav #sidenav mode="over" class="app-sidenav" color="primary">
+  <md-toolbar>
+    <span>Settings</span>
+    <span class="app-toolbar-filler"></span>
+    <md-icon class="example-icon">build</md-icon>
+    <md-toolbar-row>
+      <button md-button (click)="isDarkTheme = !isDarkTheme" class="app-sidebar-button">TOGGLE THEME</button>
+    </md-toolbar-row>
+
+    <md-toolbar-row>
+      <span>Account</span>
+      <span class="app-toolbar-filler"></span>
+      <md-icon class="example-icon">account_circle</md-icon>
+    </md-toolbar-row>
+
+    <md-toolbar-row>
+      <button md-raised-button color="accent" class="app-sidebar-button">
+            <md-icon class="example-icon">verified_user</md-icon>
+            Login            
+           </button>
+    </md-toolbar-row>
+
+    <md-toolbar-row>
+      <span>Favorites</span>
+      <span class="app-toolbar-filler"></span>
+      <md-icon class="example-icon">favorite</md-icon>
+    </md-toolbar-row>
+
+    <md-toolbar-row>
+      <button md-raised-button color="warn" class="app-sidebar-button">
+             <md-icon class="example-icon">delete</md-icon>
+             Delete
+           </button>
+    </md-toolbar-row>
+
+  </md-toolbar>
+</md-sidenav>

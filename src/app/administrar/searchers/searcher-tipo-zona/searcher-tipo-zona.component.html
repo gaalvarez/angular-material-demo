@@ -1,0 +1,50 @@
+<!--<form>
+	<div class="card card-primary card-inverse">
+		<div class="card-header card-primary">Buscar Registro Tipo Zona</div>
+		<div class="card-block bg-white">
+			<table cellspacing="0">
+				<tr>
+					<td><md-input-container> <input mdInput
+							placeholder="Nombre"> </md-input-container></td>
+					<td><md-input-container> <input mdInput
+							placeholder="clave"> </md-input-container></td>
+				</tr>
+			</table>
+		
+		
+			<button md-raised-button (click)="getTipoZona()">Buscar</button>
+		
+			<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>			
+			<ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [boundaryLinks]="true" [pageSize]="pageSize" (pageChange)="onPageChange($event)"></ngb-pagination>
+			
+			<button md-raised-button (click)="selectRow()">Seleccionar</button>
+		</div>
+	</div>
+</form>-->
+<md-card>
+	<md-card-header>
+		<md-card-title>Buscar Registro Tipo Zona</md-card-title>
+	</md-card-header>
+	<md-card-content>
+		<table cellspacing="0">
+			<tr>
+				<td>
+					<md-input-container> <input mdInput placeholder="Nombre"> </md-input-container>
+				</td>
+				<td>
+					<md-input-container> <input mdInput placeholder="clave"> </md-input-container>
+				</td>
+			</tr>
+		</table>
+
+
+		<button md-raised-button (click)="getTipoZona()">Buscar</button>
+
+		<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+		<ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [boundaryLinks]="true" [pageSize]="pageSize" (pageChange)="onPageChange($event)">
+		</ngb-pagination>
+	</md-card-content>
+	<md-card-actions>
+		<button md-raised-button (click)="selectRow()">Seleccionar</button>
+	</md-card-actions>
+</md-card>

@@ -1,0 +1,131 @@
+<md-card> 
+	<md-card-header> 
+	<md-card-title>Configuración de parametros para Tipo Zona</md-card-title> 
+	</md-card-header> 
+<!-- 	<md-card-content>  -->
+<!-- 	<md-list class="app-list"> -->
+<!-- 		<md-list-item *ngFor="let tz of tipoZonaList" -->
+<!-- 			(click)="onSelect(tz)"> -->
+<!-- 		<h3 md-line>{{tz.id}}</h3> -->
+<!-- 		<p md-line class="demo-secondary-text">{{tz.nombre}}</p> -->
+<!-- 		</md-list-item>  -->
+<!-- 	</md-list>  -->
+<!-- 	</md-card-content>  -->
+	<md-card-content>
+		<button
+			md-mini-fab
+			(click)="addTipoZona()">
+			<md-icon>add</md-icon>
+		</button>
+		<button
+			md-mini-fab
+			(click)="searchTipoZona()">
+			<md-icon>search</md-icon>
+		</button>
+	</md-card-content> 
+</md-card>
+<simple-notifications [options]="options"></simple-notifications>
+
+
+<md-card *ngIf="selectedTipoZona"> 
+
+	<md-card-header> 
+		<md-card-title>Tipo Zona: {{selectedTipoZona.nombreZona}}</md-card-title> 
+	</md-card-header>
+	<form #tipoZonaForm="ngForm">
+		<md-card-content> 
+			<md-input-container> 
+				<input	mdInput	[(ngModel)]="selectedTipoZona.idTipoZona" name="idTipoZona" placeholder="id" disabled="true"> 
+			</md-input-container> 
+			
+			<md-input-container	class="example-full-width"> 
+				<input	mdInput	[(ngModel)]="selectedTipoZona.nombreZona" name="nombreZona" placeholder="nombre" required> 
+			</md-input-container>
+			
+			<md-input-container class="example-full-width">
+				<input mdInput [(ngModel)]="selectedTipoZona.claveZona" name="claveZona"	placeholder="clave" required> 
+			</md-input-container>
+	
+			<md-input-container class="example-full-width">
+				<input mdInput [(ngModel)]="selectedTipoZona.descripcionZona" name="descripcionZona" placeholder="descripción">
+			</md-input-container>
+	
+		</md-card-content> 
+	
+		<md-card-actions>
+			<button
+				md-raised-button
+				*ngIf="selectedTipoZona.idTipoZona"
+				(click)="deleteTipoZona(selectedTipoZona); $event.stopPropagation();">Borrar</button>
+			<button type="submit" [disabled]="!tipoZonaForm.form.valid"
+				md-raised-button
+				color="primary"
+				*ngIf="selectedTipoZona.idTipoZona"
+				(click)="updateTipoZona(selectedTipoZona)">Actualizar</button>
+			<button type="submit" [disabled]="!tipoZonaForm.form.valid"
+				md-raised-button
+				color="primary"
+				*ngIf="!selectedTipoZona.idTipoZona"
+				(click)="createTipoZona(selectedTipoZona);">Crear</button>
+		</md-card-actions> 
+	</form>
+</md-card>
+
+<!-- FROM HERE THE PARAMETER CONFIGURATION -->
+<md-card *ngIf="existTipoZona"> 
+	<md-card-header> 
+		<md-card-title>Parametros asociados</md-card-title>
+	</md-card-header>
+	<button
+		md-raised-button
+		(click)="addParametro()">
+		Agregar Parametro
+	</button>
+	<div class="card-block bg-white">
+<!-- 		<ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [boundaryLinks]="true" [pageSize]="pageSize" (pageChange)="onPageChange($event)"></ngb-pagination> -->
+		<md-card *ngIf="selectedParametro"> 
+
+			<md-card-header> 
+				<md-card-title>Parametro: {{selectedParametro.nombre}}</md-card-title> 
+			</md-card-header>
+			<form #parametroForm="ngForm">
+				<md-card-content> 
+					<md-input-container> 
+						<input	mdInput	[(ngModel)]="selectedParametro.id" name="id" placeholder="id" disabled="true"> 
+					</md-input-container> 
+					
+					<md-input-container	class="example-full-width"> 
+						<input	mdInput	[(ngModel)]="selectedParametro.nombre" name="nombre" placeholder="nombre" required> 
+					</md-input-container>
+					
+					<md-input-container class="example-full-width">
+						<input mdInput [(ngModel)]="selectedParametro.clave" name="clave"	placeholder="clave" required> 
+					</md-input-container>
+			
+					<md-input-container class="example-full-width">
+						<input mdInput [(ngModel)]="selectedParametro.descripcion" name="descripcion" placeholder="descripción">
+					</md-input-container>
+			
+				</md-card-content> 
+			
+				<md-card-actions>
+					<button
+						md-raised-button
+						*ngIf="selectedParametro.id"
+						(click)="deleteParametro(selectedParametro); $event.stopPropagation();">Borrar</button>
+					<button type="submit" [disabled]="!parametroForm.form.valid"
+						md-raised-button
+						color="primary"
+						*ngIf="selectedParametro.id"
+						(click)="updateParametro(selectedParametro);">Actualizar</button>
+					<button type="submit" [disabled]="!parametroForm.form.valid"
+						md-raised-button
+						color="accent"
+						*ngIf="!selectedParametro.id"
+						(click)="createParametro(selectedParametro);">Crear</button>
+				</md-card-actions> 
+			</form>
+		</md-card>
+		<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onSelectParametro($event)"></ng2-smart-table>	
+	</div>
+</md-card>

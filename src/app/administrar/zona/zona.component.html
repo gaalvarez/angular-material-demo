@@ -1,0 +1,97 @@
+<md-card> 
+	<md-card-header> 
+	<md-card-title>Registro de datos de una Zona</md-card-title> 
+	</md-card-header> 
+<!-- 	<md-card-content>  -->
+<!-- 	<md-list class="app-list"> -->
+<!-- 		<md-list-item *ngFor="let tz of tipoZonaList" -->
+<!-- 			(click)="onSelect(tz)"> -->
+<!-- 		<h3 md-line>{{tz.id}}</h3> -->
+<!-- 		<p md-line class="demo-secondary-text">{{tz.nombre}}</p> -->
+<!-- 		</md-list-item>  -->
+<!-- 	</md-list>  -->
+<!-- 	</md-card-content>  -->
+	<md-card-content>
+		<button
+			md-mini-fab
+			(click)="addZona()">
+			<md-icon>add</md-icon>
+		</button>
+		<button
+			md-mini-fab
+			(click)="searchZona()">
+			<md-icon>search</md-icon>
+		</button>
+	</md-card-content> 
+</md-card>
+<simple-notifications [options]="options"></simple-notifications>
+
+
+<md-card *ngIf="selectedZona"> 
+
+	<md-card-header> 
+		<md-card-title>Zona: {{selectedZona.idZona}}</md-card-title> 
+	</md-card-header>
+	<form #tipoZonaForm="ngForm">
+		<md-card-content> 
+			<md-input-container> 
+				<input	mdInput	[(ngModel)]="selectedZona.idZona" name="idZona" placeholder="id" disabled> 
+			</md-input-container> 
+			
+			<md-input-container> 
+				<input	mdInput	[(ngModel)]="selectedZona.catTipoZona.nombreZona" name="nombreTipoZona" placeholder="Tipo de zona"> 
+			</md-input-container> 
+			<button
+				md-mini-fab
+				(click)="searchTipoZona()">
+				<md-icon>find_in_page</md-icon>
+			</button>
+		</md-card-content> 
+	
+		<md-card-actions>
+			<button
+				md-raised-button
+				*ngIf="selectedZona.idZona"
+				(click)="deleteZona(selectedZona); $event.stopPropagation();">Borrar</button>
+			<button type="submit" [disabled]="!tipoZonaForm.form.valid"
+				md-raised-button
+				color="primary"
+				*ngIf="selectedZona.idZona"
+				(click)="updateZona(selectedZona)">Actualizar</button>
+			<button type="submit" [disabled]="!tipoZonaForm.form.valid"
+				md-raised-button
+				color="accent"
+				*ngIf="!selectedZona.idZona"
+				(click)="createZona(selectedZona);">Crear</button>
+		</md-card-actions> 
+	</form>
+</md-card>
+
+<!-- FROM HERE THE PARAMETER CONFIGURATION -->
+<md-card *ngIf="existTipoZona"> 
+	<md-card-header> 
+		<md-card-title>Parametros asociados</md-card-title>
+	</md-card-header>
+	<div class="card-block bg-white">
+		<md-card *ngFor="let par of listParametroZona"> 
+
+			<md-card-header> 
+				<md-card-title>Parametro: {{par.parametro.nombre}}</md-card-title> 
+			</md-card-header>
+			<form>
+				<md-card-content> 
+					
+<!-- 					<md-input-container	class="example-full-width">  -->
+<!-- 						<input	mdInput	[(ngModel)]="par.nombre" name="nombre" placeholder="nombre" disabled>  -->
+<!-- 					</md-input-container> -->
+					
+					<md-input-container class="example-full-width">
+						<input mdInput [(ngModel)]="par.valorParametro" name="valor" placeholder="valor" > 
+					</md-input-container>
+			
+				</md-card-content> 
+				
+			</form>
+		</md-card>
+	</div>
+</md-card> 
